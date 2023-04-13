@@ -1,0 +1,36 @@
+name: Testcase for actions/checkout with v2 and v3
+
+on:
+  workflow_dispatch: # Enable manually running the workflow from Github for testing purpose
+
+jobs:
+  checkout:
+    runs-on: [ubuntu-latest]
+
+    steps:
+      # Checks-out the repository under $GITHUB_WORKSPACE
+      - name: Checkout the current repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  checkout-with-v3:
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - name: Checkout other repository with v3
+        uses: actions/checkout@v3
+        with:
+          repository: dark-continent/pap
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  checkout-with-v2:
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - name: Checkout other repository with v2
+        uses: actions/checkout@v2
+        with:
+          repository: dark-continent/pap
+          token: ${{ secrets.GITHUB_TOKEN }}
